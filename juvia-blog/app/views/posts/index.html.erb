@@ -1,0 +1,4 @@
+<% @posts.each do |post| %>
+<h2><%= link_to post.title, post %></h2>
+<p><%= sanitize(truncate(post.content, :length => 300)) %></p>
+<% end %>
