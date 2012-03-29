@@ -1,7 +1,7 @@
 <h1>Headlines</h1>
 
-<ul>
-<% @headlines.each do |news| %>
-  <li><%= news["headline"] %></li>
+<ul id="headlines">
+<% @headlines.each do |item| %>
+  <li class="item"><%= link_to item["headline"], item["links"]["web"]["href"] %></li>
 <% end %>
 </ul>
