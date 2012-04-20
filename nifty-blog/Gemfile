@@ -5,9 +5,10 @@ gem 'sqlite3'
 gem 'jquery-rails'
 
 gem 'nifty-generators', :group => :development
-
-gem :test, :development do
-  gem 'rspec-rails', '~> 2.9.0'
+gem 'rspec-rails', '~> 2.9.0', :group => [:test, :development]
+group :test do
+  gem 'shoulda-matchers', '~> 1.1.0'
+  gem 'factory_girl_rails', '~> 3.0'
 end
 
 # Gems used only for assets and not required
@@ -36,3 +37,5 @@ end
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+
+gem "mocha", :group => :test

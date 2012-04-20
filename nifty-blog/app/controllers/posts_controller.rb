@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
+
   def index
     @posts = Post.all
   end
@@ -37,5 +39,11 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.destroy
     redirect_to posts_url, :notice => "Successfully destroyed post."
+  end
+
+  private
+
+  def record_not_found
+    redirect_to posts_url, :alert => "Couldn't find post"
   end
 end
