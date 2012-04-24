@@ -29,6 +29,7 @@ GEM
       i18n (~> 0.6)
       multi_json (~> 1.0)
     arel (3.0.2)
+    bcrypt-ruby (3.0.1)
     builder (3.0.0)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -138,6 +139,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt-ruby (~> 3.0.0)
   coffee-rails (~> 3.2.1)
   factory_girl_rails (~> 3.0)
   jquery-rails
@@ -147,6 +149,6 @@ DEPENDENCIES
   rspec-rails (~> 2.9.0)
   sass-rails (~> 3.2.3)
   shoulda-matchers (~> 1.1.0)
-  sorcery
+  sorcery (~> 0.7.11)
   sqlite3
   uglifier (>= 1.0.3)

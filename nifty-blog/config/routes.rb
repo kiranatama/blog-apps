@@ -1,5 +1,7 @@
 NiftyBlog::Application.routes.draw do
+  get 'signup' => 'users#new', :as => 'signup'
   resources :posts
+  resources :users, :only => [:new, :create]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
