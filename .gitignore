@@ -1,1 +1,2 @@
 juvia-blog/db/sphinx/
+*.sqlite3
