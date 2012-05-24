@@ -1,10 +1,4 @@
 class ApplicationController < ActionController::Base
+  before_filter :authenticate_user!
   protect_from_forgery
-  before_filter :require_login
-
-  protected
-
-  def not_authenticated
-    redirect_to login_url, :alert => "Please login first."
-  end
 end
