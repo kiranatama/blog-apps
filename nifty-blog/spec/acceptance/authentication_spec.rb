@@ -1,9 +1,7 @@
 require 'acceptance/acceptance_helper'
 
 feature 'Authentication' do    
-  let :user do
-    FactoryGirl.create(:user)
-  end
+  let(:user) { FactoryGirl.create(:user) }
 
   scenario 'Login required' do    
     visit(root_path)
