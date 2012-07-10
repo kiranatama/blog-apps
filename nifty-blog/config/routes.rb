@@ -1,10 +1,7 @@
 NiftyBlog::Application.routes.draw do
-  get 'signup' => 'users#new', :as => 'signup'
-  get 'login' => 'sessions#new', :as => 'login'
-  get 'logout' => 'sessions#destroy', :as => 'logout'
+  devise_for :users
+
   resources :posts
-  resources :users, :only => [:new, :create]
-  resources :sessions, :only => [:new, :create]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
