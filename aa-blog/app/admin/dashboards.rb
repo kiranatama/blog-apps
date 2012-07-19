@@ -41,4 +41,17 @@ ActiveAdmin::Dashboards.build do
   # section "Membership Summary", :if => :memberships_enabled?
   # section "Membership Summary", :if => Proc.new { current_admin_user.account.memberships.any? }
 
+  section "Draft posts" do
+    table_for Post.where("status = ?", "Draft") do
+      column(:title) { |post| link_to post.title, admin_post_path(post) }
+      column(:category)
+    end
+  end
+
+  section "Recent published posts" do
+    table_for Post.where("status = ?", "Published") do
+      column(:title) { |post| link_to post.title, admin_post_path(post) }
+      column(:category)
+    end
+  end
 end
