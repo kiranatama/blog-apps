@@ -1,4 +1,6 @@
 NiftyBlog::Application.routes.draw do
+  match '/rate' => 'rater#create', :as => 'rate'
+
   devise_for :users
 
   resources :posts
