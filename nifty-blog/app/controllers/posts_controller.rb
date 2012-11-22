@@ -2,11 +2,11 @@ class PostsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
 
   def index
-    @posts = Post.all
+    @posts = current_user.posts
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = current_user.posts.find(params[:id])
   end
 
   def new
@@ -15,7 +15,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(params[:post])
-    @post.user_id = current_user.id
+    @post.user = current_user
     if @post.save
       redirect_to @post, :notice => "Successfully created post."
     else
@@ -24,11 +24,11 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
+    @post = current_user.posts.find(params[:id])
   end
 
   def update
-    @post = Post.find(params[:id])
+    @post = current_user.posts.find(params[:id])
     if @post.update_attributes(params[:post])
       redirect_to @post, :notice  => "Successfully updated post."
     else
@@ -37,7 +37,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
+    @post = current_user.posts.find(params[:id])
     @post.destroy
     redirect_to posts_url, :notice => "Successfully destroyed post."
   end
