@@ -1,20 +1,24 @@
 class PostsController < ApplicationController
-  rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
+  after_filter :verify_authorized, :except => :index
+  rescue_from Pundit::NotAuthorizedError, :with => :record_not_found
 
   def index
-    @posts = current_user.posts
+    @posts = Post.all
   end
 
   def show
-    @post = current_user.posts.find(params[:id])
+    @post = Post.find(params[:id])
+    authorize @post
   end
 
   def new
     @post = Post.new
+    authorize @post
   end
 
   def create
     @post = Post.new(params[:post])
+    authorize @post
     @post.user = current_user
     if @post.save
       redirect_to @post, :notice => "Successfully created post."
@@ -24,11 +28,13 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = current_user.posts.find(params[:id])
+    @post = Post.find(params[:id])
+    authorize @post
   end
 
   def update
-    @post = current_user.posts.find(params[:id])
+    @post = Post.find(params[:id])
+    authorize @post
     if @post.update_attributes(params[:post])
       redirect_to @post, :notice  => "Successfully updated post."
     else
@@ -37,7 +43,8 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = current_user.posts.find(params[:id])
+    @post = Post.find(params[:id])
+    authorize @post
     @post.destroy
     redirect_to posts_url, :notice => "Successfully destroyed post."
   end
