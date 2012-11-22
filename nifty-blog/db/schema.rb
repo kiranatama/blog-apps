@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(:version => 20120914100521172) do
     t.text     "body"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "user_id"
   end
 
   create_table "rates", :force => true do |t|

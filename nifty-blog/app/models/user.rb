@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation
 
+  has_many :posts
+
   # Tell the UserMailer to send a welcome Email after create
   after_create do |user|
   	UserMailer.welcome_email(user).deliver
